@@ -34,6 +34,18 @@ function timeCostFormat (inverval) {
     return String(inverval);
 }
 
+function statusFormat (statusCode) {
+    if (statusCode === 200) {
+        return colors.green(statusCode);
+    }
+
+    if (400 <= statusCode && statusCode <= 510) {
+        return colors.red(statusCode);
+    }
+
+    return statusCode;
+}
+
 // bytelength -> lengthString
 function sizeDisplay (byteLength) {
     //FIXME: Fix thie function as three type b, mb, mb.
@@ -55,7 +67,7 @@ function inputLog (context) {
 function outputLog (context, inverval) {
     console.log(...[ '--> %s %s %s Time-Cost: %s', 
         protocol(context.protocol),
-        `${context.status}`,
+        statusFormat(context.status),
         sizeDisplay(context.length),
         `${timeCostFormat(inverval)} ms`
     ]);

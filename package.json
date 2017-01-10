@@ -1,0 +1,22 @@
+{
+  "name": "logger",
+  "version": "0.0.1",
+  "description": "Node looger",
+  "main": "index.js",
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vanpipy/koa-easy-logger.git"
+  },
+  "keywords": [
+    "koa",
+    "logger"
+  ],
+  "author": "vanpipy",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.1.2"
+  }
+}

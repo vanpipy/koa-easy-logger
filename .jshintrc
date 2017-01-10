@@ -1,0 +1,11 @@
+{
+    "strict"        : true,     // true: Requires all functions run in ES5 Strict Mode
+    "globalstrict"  : false,    // true: Allow global "use strict" (also enables 'strict')
+    "esversion"     : 6,        // {int} Specify the ECMAScript version to which the code must adhere.
+    "moz"           : false,    // true: Allow Mozilla specific syntax (extends and overrides esnext features)
+                                // (ex: `for each`, multiple try/catch, function expression…)
+    "browser"       : false,     // Web Browser (window, document, etc)
+    "node"          : true,     // Node.js
+    "shelljs"       : false,    // ShellJS
+    "debug"         : false
+}

@@ -1,5 +1,5 @@
 {
-  "name": "logger",
+  "name": "koa-easy-logger",
   "version": "1.0.0",
   "description": "Node looger",
   "main": "index.js",

@@ -4,7 +4,8 @@
   "description": "Node looger",
   "main": "index.js",
   "scripts": {
-    "test": "none"
+    "test": "none",
+    "publish": "npm publish --tag 0.0.1"
   },
   "repository": {
     "type": "git",

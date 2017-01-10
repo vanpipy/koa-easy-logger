@@ -18,5 +18,8 @@
   "license": "MIT",
   "dependencies": {
     "colors": "^1.1.2"
+  },
+  "engine": {
+      "node": ">=5.6"
   }
 }

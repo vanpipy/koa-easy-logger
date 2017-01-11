@@ -43,7 +43,7 @@ function statusFormat (statusCode) {
         return colors.red(statusCode);
     }
 
-    return statusCode;
+    return colors.white(statusCode);
 }
 
 // number -> string
@@ -58,27 +58,28 @@ function sizeDisplay (byteLength) {
 }
 
 function calculateSize (maxSize) {
-    return (point) => point.lowerBound <= maxSize ? `${maxSize % point.upperBound}${point.point}` : '';
+    return (point) => point.lowerBound <= maxSize ? `${maxSize % point.upperBound}${point.unit}` : '';
 }
 
 function inputLog (context) {
-    console.log(...[
-        '<-- %s %s %s %s', 
+    console.log(
+        '<-- %s %s %s Host: %s', 
         method(context.method), 
         context.url, 
         protocol(context.protocol),
-        `Host: ${context.host}`
-    ]);
+        context.host
+    );
 }
 
 function outputLog (context, inverval) {
-    console.log(...[
-        '--> %s %s %s Time-Cost: %s', 
-        protocol(context.protocol),
+    console.log(
+        '--> %s %s %s %s Time-Cost: %s ms', 
+        method(context.method), 
+        context.url, 
         statusFormat(context.status),
         sizeDisplay(context.length),
-        `${timeCostFormat(inverval)} ms`
-    ]);
+        timeCostFormat(inverval)
+    );
 }
 
 function main () {

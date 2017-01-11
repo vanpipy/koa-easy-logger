@@ -4,7 +4,7 @@
   "description": "Koa looger",
   "main": "index.js",
   "scripts": {
-    "test": "none"
+    "test": "./node_modules/mocha/bin/mocha --harmony test/*.spec.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,16 @@
     "colors": "^1.1.2"
   },
   "engine": {
-      "node": ">=5.6"
+    "node": ">=5.6"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "koa": "^2.0.0",
+    "koa-better-router": "^2.0.1",
+    "koa-body": "^1.6.0",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.7",
+    "sinon-chai": "^2.8.0",
+    "supertest": "^2.0.1"
   }
 }

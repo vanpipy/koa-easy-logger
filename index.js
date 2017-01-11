@@ -46,12 +46,19 @@ function statusFormat (statusCode) {
     return statusCode;
 }
 
-// bytelength -> lengthString
+// number -> string
 function sizeDisplay (byteLength) {
-    //FIXME: Fix thie function as three type b, mb, mb.
-    //const units = ['b', 'K', 'M'];
+    const units = [ 
+        {unit: 'b', lowerBound: 0, upperBound: 1024},
+        {unit: 'KB', lowerBound: 1024, upperBound: 1024 * 1024},
+        {unit: 'MB', lowerBound: 1024 * 1024, upperBound: 1024 * 1024 * 1024},
+    ];
 
-    return byteLength + 'b';
+    return units.map( calculateSize(byteLength) ).join('');
+}
+
+function calculateSize (maxSize) {
+    return (point) => point.lowerBound <= maxSize ? `${maxSize % point.upperBound}${point.point}` : '';
 }
 
 function inputLog (context) {
@@ -65,7 +72,8 @@ function inputLog (context) {
 }
 
 function outputLog (context, inverval) {
-    console.log(...[ '--> %s %s %s Time-Cost: %s', 
+    console.log(...[
+        '--> %s %s %s Time-Cost: %s', 
         protocol(context.protocol),
         statusFormat(context.status),
         sizeDisplay(context.length),
@@ -73,7 +81,7 @@ function outputLog (context, inverval) {
     ]);
 }
 
-function main (logType) {
+function main () {
     return (ctx, next) => {
         const start = new Date();
 

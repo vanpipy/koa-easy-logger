@@ -6,3 +6,11 @@ node_js:
 
 install:
     npm install
+
+notification:
+    email: 
+        recipients:
+            - vanpipy@gmail.com
+        on_success: never
+        on_failure: always
+

@@ -1,6 +1,6 @@
 {
   "name": "koa-easy-logger",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Koa looger",
   "main": "index.js",
   "scripts": {

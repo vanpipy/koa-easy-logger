@@ -56,10 +56,6 @@ function sizeDisplay (byteLength) {
     }
 }
 
-function calculateSize (maxSize) {
-    return (point) => point.lowerBound <= maxSize ? `${maxSize % point.upperBound}${point.unit}` : '';
-}
-
 function inputLog (context) {
     console.log(
         '<-- %s %s %s Host: %s', 

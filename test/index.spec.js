@@ -5,6 +5,7 @@ const sinon = require('sinon');
 const sc = require('sinon-chai');
 const request = require('supertest');
 const colors = require('colors/safe');
+const bytes = require('bytes');
 const app = require('./test-server');
 
 chai.use(sc);
@@ -12,7 +13,7 @@ chai.use(sc);
 const expect = chai.expect;
 
 const responseText = 'hello world';
-const responseSize = responseText.length.toFixed();
+const responseSize = bytes(responseText.length);
 let sandbox, log;
 
 describe('koa-easy-logger', () => {
@@ -38,7 +39,7 @@ describe('koa-easy-logger', () => {
         request(app.listen())
             .get('/200')
             .expect(200)
-            .expect('Content-Length', responseSize)
+            .expect('Content-Length', responseSize.replace(/[bkmgt]+/i, ''))
             .expect((res) => {
                 expect(log).to.have.been.calledWith('<-- %s %s %s Host: %s', 'GET', '/200', 'HTTP', res.request.req._headers.host);
             })
@@ -62,7 +63,7 @@ describe('koa-easy-logger', () => {
             .get('/200')
             .expect(200)
             .expect((res) => {
-                expect(log).to.have.been.calledWith('--> %s %s %s %s Time-Cost: %s ms', 'GET', '/200', colors.green('200'), responseSize + 'b', sinon.match.any);
+                expect(log).to.have.been.calledWith('--> %s %s %s %s Time-Cost: %s ms', 'GET', '/200', colors.green('200'), responseSize, sinon.match.any);
             })
             .end((err, res) => {
                 if (err) { return done(err); }
@@ -75,7 +76,7 @@ describe('koa-easy-logger', () => {
             .get('/301')
             .expect(301)
             .expect((res) => {
-                expect(log).to.have.been.calledWith('--> %s %s %s %s Time-Cost: %s ms', 'GET', '/301', colors.white('301'), '', sinon.match.any);
+                expect(log).to.have.been.calledWith('--> %s %s %s %s Time-Cost: %s ms', 'GET', '/301', colors.white('301'), 0, sinon.match.any);
             })
             .end((err, res) => {
                 if (err) { return done(err); }
@@ -88,7 +89,7 @@ describe('koa-easy-logger', () => {
             .get('/400')
             .expect(400)
             .expect((res) => {
-                expect(log).to.have.been.calledWith('--> %s %s %s %s Time-Cost: %s ms', 'GET', '/400', colors.red('400'), '', sinon.match.any);
+                expect(log).to.have.been.calledWith('--> %s %s %s %s Time-Cost: %s ms', 'GET', '/400', colors.red('400'), 0, sinon.match.any);
             })
             .end((err, res) => {
                 if (err) { return done(err); }
@@ -101,7 +102,7 @@ describe('koa-easy-logger', () => {
             .get('/500')
             .expect(500)
             .expect((res) => {
-                expect(log).to.have.been.calledWith('--> %s %s %s %s Time-Cost: %s ms', 'GET', '/500', colors.red('500'), '', sinon.match.any);
+                expect(log).to.have.been.calledWith('--> %s %s %s %s Time-Cost: %s ms', 'GET', '/500', colors.red('500'), 0, sinon.match.any);
             })
             .end((err, res) => {
                 if (err) { return done(err); }

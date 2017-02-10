@@ -49,13 +49,11 @@ function statusFormat (statusCode) {
 
 // number -> string
 function sizeDisplay (byteLength) {
-    const units = [ 
-        {unit: 'b', lowerBound: 0, upperBound: 1024},
-        {unit: 'KB', lowerBound: 1024, upperBound: 1024 * 1024},
-        {unit: 'MB', lowerBound: 1024 * 1024, upperBound: 1024 * 1024 * 1024},
-    ];
-
-    return units.map( calculateSize(byteLength) ).join('');
+    if (byteLength) {
+        return bytes(byteLength);
+    } else {
+        return 0;
+    }
 }
 
 function calculateSize (maxSize) {
@@ -78,7 +76,7 @@ function outputLog (context, inverval) {
         method(context.method), 
         context.url, 
         statusFormat(context.status),
-        bytes(context.length),
+        sizeDisplay(context.length),
         timeCostFormat(inverval)
     );
 }

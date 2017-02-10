@@ -17,6 +17,7 @@
   "author": "vanpipy",
   "license": "MIT",
   "dependencies": {
+    "bytes": "^2.4.0",
     "colors": "^1.1.2"
   },
   "engine": {

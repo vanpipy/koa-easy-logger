@@ -1,6 +1,7 @@
 'use strict';
 
 const colors = require('colors/safe');
+const bytes = require('bytes');
 
 colors.setTheme({
     Trace: 'grey',
@@ -77,7 +78,7 @@ function outputLog (context, inverval) {
         method(context.method), 
         context.url, 
         statusFormat(context.status),
-        sizeDisplay(context.length),
+        bytes(context.length),
         timeCostFormat(inverval)
     );
 }
